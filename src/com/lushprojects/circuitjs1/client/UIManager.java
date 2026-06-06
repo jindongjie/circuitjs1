@@ -51,6 +51,7 @@ public class UIManager {
 
     Button resetButton;
     Button runStopButton;
+    Button themeToggleButton;
     Button dumpMatrixButton;
     Label powerLabel;
     Label titleLabel;
@@ -220,10 +221,7 @@ public class UIManager {
 	menus.euroGatesCheckItem.setState(euroGates);
 	menus.printableCheckItem.setCommand(
 		new Command() { public void execute(){
-		    int i;
-		    for (i=0;i<scopeManager.scopeCount;i++)
-			scopeManager.scopes[i].setRect(scopeManager.scopes[i].rect);
-		    setOptionInStorage("whiteBackground", menus.printableCheckItem.getState());
+		    setDayMode(menus.printableCheckItem.getState());
 		}
 	});
 	menus.printableCheckItem.setState(printable);
@@ -300,6 +298,14 @@ public class UIManager {
 		setSimRunning(!simIsRunning());
 	    }
 	});
+	buttonPanel.add(themeToggleButton = new Button());
+	themeToggleButton.addClickHandler(new ClickHandler() {
+	    public void onClick(ClickEvent event) {
+		setDayMode(!menus.printableCheckItem.getState());
+	    }
+	});
+	themeToggleButton.setStylePrimaryName("topButton");
+	applyThemeClass();
 
 	
 /*
@@ -859,6 +865,23 @@ public class UIManager {
 	if (menus.printableCheckItem.getState())
 	    return Color.white;
 	return Color.black;
+    }
+
+    void setDayMode(boolean dayMode) {
+	menus.printableCheckItem.setState(dayMode);
+	int i;
+	for (i = 0; i < scopeManager.scopeCount; i++)
+	    scopeManager.scopes[i].setRect(scopeManager.scopes[i].rect);
+	setOptionInStorage("whiteBackground", dayMode);
+	applyThemeClass();
+    }
+
+    void applyThemeClass() {
+	boolean dayMode = menus.printableCheckItem.getState();
+	Document.get().getBody().removeClassName(dayMode ? "theme-night" : "theme-day");
+	Document.get().getBody().addClassName(dayMode ? "theme-day" : "theme-night");
+	if (themeToggleButton != null)
+	    themeToggleButton.setText(dayMode ? Locale.LS("Switch to Night Mode") : Locale.LS("Switch to Day Mode"));
     }
 
     // ---- UI Controls ----

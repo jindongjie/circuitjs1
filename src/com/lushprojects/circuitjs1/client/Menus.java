@@ -223,7 +223,7 @@ public class Menus {
 	
 	m.addItem(euroResistorCheckItem = new CheckboxMenuItem(Locale.LS("European Resistors")));
 	m.addItem(euroGatesCheckItem = new CheckboxMenuItem(Locale.LS("IEC Gates")));
-	m.addItem(printableCheckItem = new CheckboxMenuItem(Locale.LS("White Background")));
+	m.addItem(printableCheckItem = new CheckboxMenuItem(Locale.LS("Day Mode (Light Background)")));
 
 	m.addItem(conventionCheckItem = new CheckboxMenuItem(Locale.LS("Conventional Current Motion")));
 	m.addItem(noEditCheckItem = new CheckboxMenuItem(Locale.LS("Disable Editing")));
@@ -600,4 +600,3 @@ public class Menus {
 	ExportAsLocalFileDialog.setLastFileName(str.equals("blank.txt") ? null : str);
     }
 }
-

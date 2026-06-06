@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+:root {
+	--cjs-panel-bg: #ffffff;
+	--cjs-mobile-text: #111111;
+}
+
+body.theme-night {
+	--cjs-panel-bg: #1c2229;
+	--cjs-mobile-text: #f1f3f4;
+}
+
 /*Hide all mobile elements when in desktop usage*/
 .trigger, .toptrigger, .triggerLabel, toptriggerlabel {
 	display: none;
@@ -9,7 +19,8 @@
 	.triggerLabel {
 		display: initial;
 		border-radius: 10px 0px 0px 10px;
-		background: white;
+		background: var(--cjs-panel-bg);
+		color: var(--cjs-mobile-text);
 		width: 20px;
 		height: 50px;
 		position: absolute;
@@ -66,7 +77,7 @@
 	/* selects the side panel */
 	.trigger+.triggerLabel+div {
 		width: 0 !important;
-		background: white;
+		background: var(--cjs-panel-bg);
 		z-index: 1;
 		transition: width 1s;
 	}
@@ -81,7 +92,7 @@
 		width: 100%;
 		text-align: center;
 		top: 30px;
-		background: white;
+		background: var(--cjs-panel-bg);
 		z-index: 2;
 	}
 	.gwt-MenuBar-horizontal * {
@@ -113,7 +124,7 @@
 	.menuPopupTopLeft, .menuPopupTopCenter, .menuPopupTopRight,
 		.menuPopupMiddleLeft, .menuPopupMiddleRight, .menuPopupMiddleCenter,
 		.menuPopupBottomLeft, .menuPopupBottomCenter, .menuPopupBottomRight {
-		background: white !important;
+		background: var(--cjs-panel-bg) !important;
 	}
 
 	/* selects the div containing the canvas */
