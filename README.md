@@ -93,22 +93,15 @@ This opens `http://localhost:8000/circuitjs.html` in your browser automatically 
 
 ## Deployment of the web application
 
-### GitHub Actions + Cloudflare Pages
+### GitHub Actions + GitHub Pages
 
 This repository includes:
 
 * an existing GitHub Actions build workflow for CI compilation checks on pushes and pull requests.
-* `.github/workflows/deploy-cloudflare.yml` for publishing the `site` output to Cloudflare Pages.
+* `.github/workflows/deploy-pages.yml` for publishing the `site` output to GitHub Pages.
 
-Before enabling deployment, configure these repository settings:
-
-* **Secrets**
-  * `CLOUDFLARE_API_TOKEN` (recommended: scoped token with only Cloudflare Pages edit permissions for this project)
-  * `CLOUDFLARE_ACCOUNT_ID`
-* **Variables**
-  * `CLOUDFLARE_PAGES_PROJECT` (your Cloudflare Pages project name)
-
-The deploy workflow runs on pushes to the `master` branch and can also be triggered manually with **workflow_dispatch**.
+Enable GitHub Pages deployment in repository settings, then publish a release to trigger deployment automatically.
+The deploy workflow runs on **release.published** and can also be triggered manually with **workflow_dispatch**.
 
 * "GWT Compile Project..." as explained above or run `./dev.sh compile`. This will put the outputs in to the "war" directory in the Eclipse project folder. You then need to copy everything in the "war" directory, except the "WEB-INF" directory, on to your web server.
 * Customize the header of the file "circuitjs1.html" to include your tracking, favicon etc.
