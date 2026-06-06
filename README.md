@@ -103,7 +103,7 @@ This repository includes:
 Before enabling deployment, configure these repository settings:
 
 * **Secrets**
-  * `CLOUDFLARE_API_TOKEN`
+  * `CLOUDFLARE_API_TOKEN` (recommended: scoped token with only Cloudflare Pages edit permissions for this project)
   * `CLOUDFLARE_ACCOUNT_ID`
 * **Variables**
   * `CLOUDFLARE_PAGES_PROJECT` (your Cloudflare Pages project name)
