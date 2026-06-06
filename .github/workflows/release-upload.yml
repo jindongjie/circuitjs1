@@ -1,0 +1,38 @@
+name: Upload Release Assets
+
+on:
+  release:
+    types: [ created ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build with Gradle (GWT compile)
+        run: ./gradlew compileGwt --console verbose
+
+      - name: Build site
+        run: ./gradlew makeSite --console verbose
+
+      - name: Create site archive
+        run: zip -r circuitjs1-site.zip site/
+
+      - name: Upload site archive to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" circuitjs1-site.zip --clobber
