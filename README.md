@@ -98,7 +98,7 @@ This opens `http://localhost:8000/circuitjs.html` in your browser automatically 
 This repository includes:
 
 * `.github/workflows/build.yml` for CI compilation checks on pushes and pull requests.
-* `.github/workflows/deploy-pages.yml` for publishing the `site/` output to Cloudflare Pages.
+* `.github/workflows/deploy-cloudflare.yml` for publishing the `site/` output to Cloudflare Pages.
 
 Before enabling deployment, configure these repository settings:
 
