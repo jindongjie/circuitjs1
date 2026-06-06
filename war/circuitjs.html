@@ -28,6 +28,46 @@
    cursor: row-resize;
 }
 
+body {
+	background: #f5f7fb;
+	color: #202124;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.theme-day {
+	background: #f5f7fb;
+	color: #202124;
+}
+
+body.theme-night {
+	background: #101418;
+	color: #e8eaed;
+}
+
+body.theme-day .gwt-MenuBar-horizontal,
+body.theme-day .gwt-MenuBarPopup,
+body.theme-day .menuPopupMiddleCenterInner > div > table,
+body.theme-day .verticalPanel {
+	background: #ffffff;
+	color: #202124;
+}
+
+body.theme-night .gwt-MenuBar-horizontal,
+body.theme-night .gwt-MenuBarPopup,
+body.theme-night .menuPopupMiddleCenterInner > div > table,
+body.theme-night .verticalPanel {
+	background: #1c2229;
+	color: #e8eaed;
+}
+
+body.theme-night .gwt-MenuItem {
+	color: #e8eaed;
+}
+
+body.theme-night .gwt-MenuItem-disabled {
+	color: #7d8590;
+}
+
 .gwt-MenuItem-disabled {
 	color: lightgray;
 }
@@ -140,6 +180,13 @@
     border-bottom: 1px solid #a0a0a0;
     border-radius: 3px;
     -moz-border-radius: 3px;
+}
+
+body.theme-night .topButton {
+    background-color: #2b323a;
+    color: #f4f6f8;
+    border: 1px solid #4a5664;
+    border-bottom: 1px solid #404a55;
 }
 
 .radioPanel label {
