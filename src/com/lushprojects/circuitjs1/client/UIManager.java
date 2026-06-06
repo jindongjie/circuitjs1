@@ -304,7 +304,7 @@ public class UIManager {
 		setDayMode(!menus.printableCheckItem.getState());
 	    }
 	});
-	themeToggleButton.setStylePrimaryName("topButton");
+	themeToggleButton.setStylePrimaryName("theme-toggle-btn");
 	applyThemeClass();
 
 	
@@ -878,12 +878,30 @@ public class UIManager {
 	applyThemeClass();
     }
 
+    static boolean isDayMode() {
+	return theUI != null && theUI.menus != null && theUI.menus.printableCheckItem.getState();
+    }
+
     void applyThemeClass() {
 	boolean dayMode = menus.printableCheckItem.getState();
 	Document.get().getBody().removeClassName(dayMode ? "theme-night" : "theme-day");
 	Document.get().getBody().addClassName(dayMode ? "theme-day" : "theme-night");
-	if (themeToggleButton != null)
-	    themeToggleButton.setText(dayMode ? Locale.LS("Switch to Night Mode") : Locale.LS("Switch to Day Mode"));
+	if (themeToggleButton != null) {
+	    String trackClass = dayMode ? "day" : "night";
+	    String title = dayMode ? Locale.LS("Switch to Night Mode") : Locale.LS("Switch to Day Mode");
+	    themeToggleButton.setHTML(
+		"<span class=\"theme-toggle-icon\">☀</span>" +
+		"<span class=\"theme-toggle-track " + trackClass + "\">" +
+		    "<span class=\"theme-toggle-thumb\"></span>" +
+		"</span>" +
+		"<span class=\"theme-toggle-icon\">🌙</span>"
+	    );
+	    themeToggleButton.setTitle(title);
+	}
+	// Redraw canvas-based scrollbars so they reflect the new theme colors
+	if (speedBar != null)   speedBar.draw();
+	if (currentBar != null) currentBar.draw();
+	if (powerBar != null)   powerBar.draw();
     }
 
     // ---- UI Controls ----

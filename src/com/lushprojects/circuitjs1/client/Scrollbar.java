@@ -87,7 +87,6 @@ public class Scrollbar extends  Composite implements
 		can.setCoordinateSpaceHeight(SCROLLHEIGHT);
 		pan.add(can);
 		g=can.getContext2d();
-		g.setFillStyle("#ffffff");
 		can.addClickHandler( this);
 		can.addMouseDownHandler(this);
 		can.addMouseUpHandler(this);
@@ -119,10 +118,16 @@ public class Scrollbar extends  Composite implements
 	}
 	
 	void draw() {
+		boolean dayMode = UIManager.isDayMode();
+		String bgColor    = dayMode ? "#f5f7fb" : "#1c2229";
+		String fgEnabled  = dayMode ? "#000000" : "#c8d0d8";
+		String fgDisabled = dayMode ? "#c8c8c8" : "#4a5664";
+		String trackColor = dayMode ? "#aaaaaa" : "#3a4656";
+		g.setFillStyle(bgColor);
 		if (enabled)
-			g.setStrokeStyle("#000000");
+			g.setStrokeStyle(fgEnabled);
 		else
-			g.setStrokeStyle("lightgrey");
+			g.setStrokeStyle(fgDisabled);
 		g.setLineWidth(1.0);
 		g.fillRect(0,0,VERTICALPANELWIDTH,SCROLLHEIGHT);
 		g.beginPath();
@@ -134,7 +139,9 @@ public class Scrollbar extends  Composite implements
 		g.lineTo(VERTICALPANELWIDTH-HMARGIN-SCROLLHEIGHT+3, SCROLLHEIGHT);
 		g.stroke();
 		if (enabled)
-			g.setStrokeStyle("grey");
+			g.setStrokeStyle(trackColor);
+		else
+			g.setStrokeStyle(fgDisabled);
 		g.beginPath();
 		g.setLineWidth(5.0);
 		g.moveTo(HMARGIN+SCROLLHEIGHT+BARMARGIN, SCROLLHEIGHT/2);
@@ -145,19 +152,16 @@ public class Scrollbar extends  Composite implements
 			if (attachedElm!=null && attachedElm.needsHighlight())
 				g.setStrokeStyle(CircuitElm.selectColor.getHexValue());
 			else
-				g.setStrokeStyle("red");
+				g.setStrokeStyle(dayMode ? "#cc2200" : "#e05050");
 			g.beginPath();
 			g.moveTo(HMARGIN+SCROLLHEIGHT+BARMARGIN, SCROLLHEIGHT/2);
 			g.lineTo(p, SCROLLHEIGHT/2);
 			g.stroke();
-			g.setStrokeStyle("#000000");
-//			g.beginPath();
-//			g.moveTo(p, 0);
-//			g.lineTo(p, SCROLLHEIGHT);
+			g.setStrokeStyle(fgEnabled);
 			g.setLineWidth(2.0);
+			g.setFillStyle(dayMode ? "#e0e0e0" : "#3a4656");
 			g.fillRect(p-2, 2, 5, SCROLLHEIGHT-4);
 			g.strokeRect(p-2, 2, 5, SCROLLHEIGHT-4);
-//			g.stroke();
 		}
 
 

@@ -193,6 +193,288 @@ body.theme-night .topButton {
 	margin-right: 15px;
 }
 
+/* ===================== Toolbar ===================== */
+.toolbar-panel {
+    background: #f0f2f5;
+    border-bottom: 1px solid #d0d3d8;
+}
+
+body.theme-night .toolbar-panel {
+    background: #1e2530;
+    border-bottom: 1px solid #2f3a48;
+}
+
+.toolbar-icon-btn {
+    font-size: 24px;
+    padding: 1px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #444;
+    border-radius: 4px;
+    transition: color 0.15s, background-color 0.15s;
+    display: inline-block;
+}
+
+.toolbar-icon-btn:hover {
+    color: #0066cc;
+    background-color: rgba(0, 102, 204, 0.08);
+}
+
+.toolbar-icon-btn.toolbar-icon-active {
+    color: #0066cc;
+    background-color: #ddeeff;
+}
+
+body.theme-night .toolbar-icon-btn {
+    color: #b0bec5;
+}
+
+body.theme-night .toolbar-icon-btn:hover {
+    color: #64b5f6;
+    background-color: rgba(100, 181, 246, 0.12);
+}
+
+body.theme-night .toolbar-icon-btn.toolbar-icon-active {
+    color: #64b5f6;
+    background-color: #1a2e45;
+}
+
+.toolbar-palette {
+    background: #ffffff;
+    border: 1px solid #d0d3d8;
+    border-radius: 4px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+body.theme-night .toolbar-palette {
+    background: #242d38;
+    border-color: #3a4656;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+}
+
+.toolbar-mode-label {
+    font-size: 14px;
+    color: #555;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+
+body.theme-night .toolbar-mode-label {
+    color: #9aa5b4;
+}
+
+/* ===================== Sidebar buttons ===================== */
+.topButton {
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.topButton:hover {
+    background-color: #d4d4d4;
+}
+
+body.theme-night .topButton:hover {
+    background-color: #3a424e;
+}
+
+.topButton-red:hover {
+    background-color: #cc0000;
+}
+
+/* ===================== Sidebar labels ===================== */
+body.theme-night .topSpace {
+    color: #9aa5b4;
+}
+
+body.theme-night .gwt-Label {
+    color: #c8d0d8;
+}
+
+/* ===================== GWT Dialog ===================== */
+.gwt-DialogBox {
+    border: 1px solid #c8cdd4;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    overflow: hidden;
+    background: #ffffff;
+    color: #202124;
+}
+
+body.theme-night .gwt-DialogBox {
+    border-color: #3a4656;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    background: #1c2229;
+    color: #e8eaed;
+}
+
+.gwt-DialogBox .Caption {
+    background: #e8eaed;
+    color: #202124;
+    font-weight: bold;
+    padding: 6px 10px;
+    cursor: move;
+    font-size: 13px;
+}
+
+body.theme-night .gwt-DialogBox .Caption {
+    background: #2b333d;
+    color: #e8eaed;
+}
+
+.gwt-DialogBox .dialogMiddleCenter {
+    background: #ffffff;
+    padding: 8px;
+}
+
+body.theme-night .gwt-DialogBox .dialogMiddleCenter {
+    background: #1c2229;
+}
+
+/* ===================== GWT form widgets ===================== */
+.gwt-Button {
+    background: #e7e7e7;
+    color: #202124;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    font-size: 12px;
+}
+
+.gwt-Button:hover {
+    background: #d4d4d4;
+}
+
+body.theme-night .gwt-Button {
+    background: #2b333d;
+    color: #e8eaed;
+    border-color: #4a5664;
+}
+
+body.theme-night .gwt-Button:hover {
+    background: #38424f;
+}
+
+.gwt-TextBox,
+.gwt-PasswordTextBox,
+.gwt-TextArea {
+    background: #ffffff;
+    color: #202124;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-size: 12px;
+    transition: border-color 0.15s, background-color 0.15s;
+}
+
+.gwt-TextBox:focus,
+.gwt-PasswordTextBox:focus,
+.gwt-TextArea:focus {
+    border-color: #0066cc;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,102,204,0.18);
+}
+
+body.theme-night .gwt-TextBox,
+body.theme-night .gwt-PasswordTextBox,
+body.theme-night .gwt-TextArea {
+    background: #242d38;
+    color: #e8eaed;
+    border-color: #4a5664;
+}
+
+body.theme-night .gwt-TextBox:focus,
+body.theme-night .gwt-PasswordTextBox:focus,
+body.theme-night .gwt-TextArea:focus {
+    border-color: #64b5f6;
+    box-shadow: 0 0 0 2px rgba(100,181,246,0.18);
+}
+
+.gwt-ListBox {
+    background: #ffffff;
+    color: #202124;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-size: 12px;
+}
+
+body.theme-night .gwt-ListBox {
+    background: #242d38;
+    color: #e8eaed;
+    border-color: #4a5664;
+}
+
+.gwt-CheckBox {
+    font-size: 12px;
+    color: #202124;
+}
+
+body.theme-night .gwt-CheckBox {
+    color: #e8eaed;
+}
+
+/* ===================== Day/Night Toggle Switch */
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    margin: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 20px;
+    transition: background 0.2s;
+    vertical-align: middle;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(128, 128, 128, 0.15);
+}
+
+.theme-toggle-track {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+}
+
+.theme-toggle-track.day {
+    background: #f0c040;
+}
+
+.theme-toggle-track.night {
+    background: #4a5a8a;
+}
+
+.theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    transition: left 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-track.day .theme-toggle-thumb {
+    left: 21px;
+}
+
+.theme-toggle-track.night .theme-toggle-thumb {
+    left: 3px;
+}
+
+.theme-toggle-icon {
+    font-size: 14px;
+    line-height: 1;
+}
+
 </style>
 
 <link rel="stylesheet" href="font/fontello.css">
