@@ -531,7 +531,69 @@ public class CommandManager {
     	String s;
     	setMenuSelection();
     	s=copyOfSelectedElms();
-    	doPaste(s);
+	if (s == null || s.length() == 0)
+	    return;
+	if (app.duplicateArrayRows == 1 && app.duplicateArrayCols == 2 &&
+	    app.duplicateArraySpacingX == 1 && app.duplicateArraySpacingY == 1) {
+	    doPaste(s);
+	    return;
+	}
+	doDuplicateArray(s);
+    }
+
+    Rectangle getSelectedBoundingBox() {
+	Rectangle selbb = null;
+	for (CircuitElm ce : app.elmList) {
+	    if (!ce.isSelected())
+		continue;
+	    Rectangle bb = ce.getBoundingBox();
+	    if (bb == null)
+		continue;
+	    selbb = (selbb == null) ? bb : selbb.union(bb);
+	}
+	return selbb;
+    }
+
+    void doDuplicateArray(String dump) {
+	Rectangle srcbb = getSelectedBoundingBox();
+	if (srcbb == null) {
+	    doPaste(dump);
+	    return;
+	}
+
+	int rows = Math.max(1, app.duplicateArrayRows);
+	int cols = Math.max(1, app.duplicateArrayCols);
+	int spacingX = Math.max(0, app.duplicateArraySpacingX);
+	int spacingY = Math.max(0, app.duplicateArraySpacingY);
+
+	int stepX = app.snapGrid(srcbb.width + spacingX * app.gridSize);
+	int stepY = app.snapGrid(srcbb.height + spacingY * app.gridSize);
+	if (stepX == 0)
+	    stepX = app.gridSize;
+	if (stepY == 0)
+	    stepY = app.gridSize;
+
+	app.undoManager.pushUndo();
+	app.mouse.clearSelection();
+	int flags = CircuitLoader.RC_RETAIN;
+	if (app.elmList.size() > 0)
+	    flags |= CircuitLoader.RC_NO_CENTER;
+
+	for (int r = 0; r < rows; r++) {
+	    for (int c = 0; c < cols; c++) {
+		if (r == 0 && c == 0)
+		    continue;
+		int oldsz = app.elmList.size();
+		app.loader.readCircuit(dump, flags);
+		for (int i = oldsz; i != app.elmList.size(); i++) {
+		    CircuitElm ce = app.elmList.get(i);
+		    ce.move(c * stepX, r * stepY);
+		    ce.setSelected(true);
+		}
+	    }
+	}
+	app.needAnalyze();
+	app.undoManager.writeRecoveryToStorage();
     }
 
     void doPaste(String dump) {

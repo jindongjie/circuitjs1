@@ -204,6 +204,8 @@ You can add query parameters to link to change the applications startup behaviou
 .../circuitjs.html?mouseWheelEdit=<true|false> // allow changing of values by mouse wheel
 .../circuitjs.html?mouseMode=<item> // set the initial mouse mode.  can also initially perform other UI actions, such as opening the 'about' menu, running 'importfromlocalfile', etc.
 .../circuitjs.html?hideInfoBox=<true|false>
+.../circuitjs.html?defaultScale=<number> // startup zoom multiplier (0.2 to 2.5)
+.../circuitjs.html?wireBumps=<true|false> // show or hide anti-overlap wire jump bumps
 ```
 The simulator can also interface with your javascript code.  See [war/jsinterface.html](http://www.falstad.com/circuit/jsinterface.html) for an example.
 

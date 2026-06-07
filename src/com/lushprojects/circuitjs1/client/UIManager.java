@@ -126,6 +126,8 @@ public class UIManager {
 	String currentColor = null;
 	String mouseModeReq = null;
 	boolean euroGates = false;
+	double defaultScale = getDoubleOptionFromStorage("defaultScale", 1);
+	boolean wireBumps = getOptionFromStorage("wireBumps", true);
 
 	elmList = app.elmList;
 
@@ -148,9 +150,19 @@ public class UIManager {
 	    currentColor = qp.getValue("currentColor");
 	    mouseModeReq = qp.getValue("mouseMode");
 	    hideInfoBox = qp.getBooleanValue("hideInfoBox", false);
+	    String defaultScaleReq = qp.getValue("defaultScale");
+	    if (defaultScaleReq != null)
+		defaultScale = Double.parseDouble(defaultScaleReq);
+	    wireBumps = qp.getBooleanValue("wireBumps", getOptionFromStorage("wireBumps", true));
 	} catch (Exception e) { 
 	    app.console("Exception: " + e);
 	}
+	app.defaultCanvasScale = clamp(defaultScale, .2, 2.5);
+	app.wireBumpsEnabled = wireBumps;
+	app.duplicateArrayRows = Math.max(1, getIntOptionFromStorage("arrayRows", 1));
+	app.duplicateArrayCols = Math.max(1, getIntOptionFromStorage("arrayCols", 2));
+	app.duplicateArraySpacingX = Math.max(0, getIntOptionFromStorage("arraySpacingX", 1));
+	app.duplicateArraySpacingY = Math.max(0, getIntOptionFromStorage("arraySpacingY", 1));
 
 	boolean euroSetting = false;
 	if (euroRes)
@@ -472,6 +484,7 @@ public class UIManager {
     	    scale = Math.min(app.circuitArea.width /(double)(bounds.width+140),
     			     cheight/(double)(bounds.height+100));
     	scale = Math.min(scale, 1.5);
+    	scale = clamp(scale * app.defaultCanvasScale, .2, 2.5);
 
     	app.transform[0] = app.transform[3] = scale;
     	app.transform[1] = app.transform[2] = app.transform[4] = app.transform[5] = 0;
@@ -1444,6 +1457,52 @@ public class UIManager {
 	    Storage stor = Storage.getLocalStorageIfSupported();
 	    mouse.wheelSensitivity = Double.parseDouble(stor.getItem("wheelSensitivity"));
 	} catch (Exception e) {}
+    }
+
+    double clamp(double val, double lo, double hi) {
+	return Math.max(lo, Math.min(hi, val));
+    }
+
+    double getDoubleOptionFromStorage(String key, double val) {
+	Storage stor = Storage.getLocalStorageIfSupported();
+	if (stor == null)
+	    return val;
+	try {
+	    String s = stor.getItem(key);
+	    if (s == null)
+		return val;
+	    return Double.parseDouble(s);
+	} catch (Exception e) {
+	    return val;
+	}
+    }
+
+    int getIntOptionFromStorage(String key, int val) {
+	Storage stor = Storage.getLocalStorageIfSupported();
+	if (stor == null)
+	    return val;
+	try {
+	    String s = stor.getItem(key);
+	    if (s == null)
+		return val;
+	    return Integer.parseInt(s);
+	} catch (Exception e) {
+	    return val;
+	}
+    }
+
+    void setDoubleOptionInStorage(String key, double val) {
+	Storage stor = Storage.getLocalStorageIfSupported();
+	if (stor == null)
+	    return;
+	stor.setItem(key, Double.toString(val));
+    }
+
+    void setIntOptionInStorage(String key, int val) {
+	Storage stor = Storage.getLocalStorageIfSupported();
+	if (stor == null)
+	    return;
+	stor.setItem(key, Integer.toString(val));
     }
 
     boolean getOptionFromStorage(String key, boolean val) {

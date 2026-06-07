@@ -66,7 +66,13 @@ public class CirSim implements NativePreviewHandler {
     String stopMessage;
 
     double minFrameRate = 20;
+    double defaultCanvasScale = 1;
     boolean developerMode;
+    int duplicateArrayRows = 1;
+    int duplicateArrayCols = 2;
+    int duplicateArraySpacingX = 1;
+    int duplicateArraySpacingY = 1;
+    boolean wireBumpsEnabled = true;
 
     static final int HINT_LC = 1;
     static final int HINT_RC = 2;
@@ -669,4 +675,3 @@ class CircuitContext {
     String modelName;
     Vector<CustomCompositeModel> changedModels = new Vector<CustomCompositeModel>();
 }
-

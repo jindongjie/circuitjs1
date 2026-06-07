@@ -2,10 +2,10 @@
 set -o errexit -o nounset # bash script safety
 
 # For GWT download URLs see https://www.gwtproject.org/versions.html
-GWT_VERSION="2.8.2"
+GWT_VERSION="2.11.0"
 #GWT_URL="https://github.com/gwtproject/gwt/releases/download/2.10.0/gwt-2.10.0.zip"
 #GWT_URL="https://storage.googleapis.com/gwt-releases/gwt-2.9.0.zip"
-GWT_URL="https://github.com/gwtproject/gwt/releases/download/2.8.2/gwt-2.8.2.zip" # 2.8.2
+GWT_URL="https://github.com/gwtproject/gwt/releases/download/2.11.0/gwt-2.11.0.zip" # 2.11.0
 #GWT_URL="https://goo.gl/TysXZl" # 2.8.1 (does not run)
 
 SCRIPT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
