@@ -1553,7 +1553,7 @@
 "cross switch"="chave cruzada"
 "motor protection switch"="interruptor de proteção de motor"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Dia"
+"Night"="Noite"
+"Switch to Day Mode"="Mudar para o modo diurno"
+"Switch to Night Mode"="Mudar para o modo noturno"

@@ -1355,7 +1355,7 @@
 "write"="skriv"
 "Ćuk Converter"="Ćuk konverter"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Dag"
+"Night"="Nat"
+"Switch to Day Mode"="Skift til dagtilstand"
+"Switch to Night Mode"="Skift til nattilstand"

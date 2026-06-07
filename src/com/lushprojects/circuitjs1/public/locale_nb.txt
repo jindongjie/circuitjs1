@@ -1491,7 +1491,7 @@
 "viewport"="visningsvindu"
 "wattmeter"="wattmeter"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Dag"
+"Night"="Natt"
+"Switch to Day Mode"="Bytt til dagmodus"
+"Switch to Night Mode"="Bytt til nattmodus"

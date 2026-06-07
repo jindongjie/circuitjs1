@@ -1513,7 +1513,7 @@
 "text"="texto"
 "transformer (sat)"="transformador (sat)"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Día"
+"Night"="Noche"
+"Switch to Day Mode"="Cambiar al modo de día"
+"Switch to Night Mode"="Cambiar al modo de noche"

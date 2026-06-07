@@ -1597,7 +1597,7 @@
 "Play Once"="播放一次"
 "Selection Color"="選擇顏色"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="白天"
+"Night"="夜間"
+"Switch to Day Mode"="切換到日間模式"
+"Switch to Night Mode"="切換到夜間模式"

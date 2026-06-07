@@ -1516,7 +1516,7 @@
 "transformer (sat)"="трансформатор (насыщ.)"
 "viewport"="окно просмотра"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="День"
+"Night"="Ночь"
+"Switch to Day Mode"="Переключить на дневной режим"
+"Switch to Night Mode"="Переключить на ночной режим"

@@ -1489,7 +1489,7 @@
 "varactor"="waraktor"
 "Ćuk Converter"="Konwerter Ćuk"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Dzień"
+"Night"="Noc"
+"Switch to Day Mode"="Przełącz na tryb dzienny"
+"Switch to Night Mode"="Przełącz na tryb nocny"

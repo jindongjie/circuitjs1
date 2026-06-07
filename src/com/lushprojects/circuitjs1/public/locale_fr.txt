@@ -1491,7 +1491,7 @@
 "View in New Undocked Scope"="Voir dans un nouvel oscilloscope détaché"
 "X-Y Plots"="Tracés X-Y"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Jour"
+"Night"="Nuit"
+"Switch to Day Mode"="Basculer en mode jour"
+"Switch to Night Mode"="Basculer en mode nuit"

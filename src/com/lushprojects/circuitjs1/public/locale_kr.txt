@@ -1385,7 +1385,7 @@
 "transformer (sat)"="변압기 (포화)"
 "viewport"="뷰포트"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="주간"
+"Night"="야간"
+"Switch to Day Mode"="주간 모드로 전환"
+"Switch to Night Mode"="야간 모드로 전환"

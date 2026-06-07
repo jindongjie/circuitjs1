@@ -1488,7 +1488,7 @@
 "unijunction transistor"="transistor unigiunzione"
 "wattmeter"="wattmetro"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="Giorno"
+"Night"="Notte"
+"Switch to Day Mode"="Passa alla modalità giorno"
+"Switch to Night Mode"="Passa alla modalità notte"

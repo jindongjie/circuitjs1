@@ -1527,7 +1527,7 @@
 "transformer (sat)"="変圧器 (飽和)"
 "viewport"="ビューポート"
 
-"Day"="Day"
-"Night"="Night"
-"Switch to Day Mode"="Switch to Day Mode"
-"Switch to Night Mode"="Switch to Night Mode"
+"Day"="昼"
+"Night"="夜"
+"Switch to Day Mode"="昼モードに切り替え"
+"Switch to Night Mode"="夜モードに切り替え"
