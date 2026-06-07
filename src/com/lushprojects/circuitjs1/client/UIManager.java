@@ -895,22 +895,51 @@ public class UIManager {
 	return theUI != null && theUI.menus != null && theUI.menus.printableCheckItem.getState();
     }
 
+    private String getThemeToggleHtml(boolean dayMode) {
+	String trackClass = dayMode ? "day" : "night";
+	return "<span class=\"theme-toggle-icon\">☀</span>" +
+	    "<span class=\"theme-toggle-track " + trackClass + "\">" +
+		"<span class=\"theme-toggle-thumb\"></span>" +
+	    "</span>" +
+	    "<span class=\"theme-toggle-icon\">🌙</span>";
+    }
+
+    void updateThemeToggleButton(Button button) {
+	boolean dayMode = menus.printableCheckItem.getState();
+	String title = dayMode ? Locale.LS("Switch to Night Mode") : Locale.LS("Switch to Day Mode");
+	button.setHTML(getThemeToggleHtml(dayMode));
+	button.setTitle(title);
+    }
+
+    Widget createContextMenuContents(MenuBar menuBar, boolean includeThemeToggle) {
+	if (!includeThemeToggle)
+	    return menuBar;
+	VerticalPanel panel = new VerticalPanel();
+	panel.setStyleName("context-menu-panel");
+	final Button popupThemeToggleButton = new Button();
+	popupThemeToggleButton.setStylePrimaryName("theme-toggle-btn");
+	popupThemeToggleButton.addStyleName("context-menu-theme-toggle");
+	updateThemeToggleButton(popupThemeToggleButton);
+	popupThemeToggleButton.addClickHandler(new ClickHandler() {
+	    public void onClick(ClickEvent event) {
+		setDayMode(!menus.printableCheckItem.getState());
+		updateThemeToggleButton(popupThemeToggleButton);
+	    }
+	});
+	panel.add(popupThemeToggleButton);
+	Label divider = new Label();
+	divider.setStyleName("context-menu-toggle-divider");
+	panel.add(divider);
+	panel.add(menuBar);
+	return panel;
+    }
+
     void applyThemeClass() {
 	boolean dayMode = menus.printableCheckItem.getState();
 	Document.get().getBody().removeClassName(dayMode ? "theme-night" : "theme-day");
 	Document.get().getBody().addClassName(dayMode ? "theme-day" : "theme-night");
-	if (themeToggleButton != null) {
-	    String trackClass = dayMode ? "day" : "night";
-	    String title = dayMode ? Locale.LS("Switch to Night Mode") : Locale.LS("Switch to Day Mode");
-	    themeToggleButton.setHTML(
-		"<span class=\"theme-toggle-icon\">☀</span>" +
-		"<span class=\"theme-toggle-track " + trackClass + "\">" +
-		    "<span class=\"theme-toggle-thumb\"></span>" +
-		"</span>" +
-		"<span class=\"theme-toggle-icon\">🌙</span>"
-	    );
-	    themeToggleButton.setTitle(title);
-	}
+	if (themeToggleButton != null)
+	    updateThemeToggleButton(themeToggleButton);
 	// Redraw canvas-based scrollbars so they reflect the new theme colors
 	if (speedBar != null)   speedBar.draw();
 	if (currentBar != null) currentBar.draw();
