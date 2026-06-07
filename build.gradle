@@ -50,8 +50,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.google.gwt:gwt-user:2.11.0'
-    implementation 'com.google.gwt:gwt-dev:2.11.0'
+    implementation 'org.gwtproject:gwt-user:2.11.0'
+    implementation 'org.gwtproject:gwt-dev:2.11.0'
     //compile 'com.google.gwt:gwt-user:2.8.2'
     //compile 'com.google.gwt:gwt-dev:2.8.2'
     //compile 'com.google.gwt:gwt-servlet:2.8.2'

@@ -20,6 +20,7 @@
 package com.lushprojects.circuitjs1.client;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
@@ -278,18 +279,19 @@ import com.google.gwt.xml.client.Element;
 	    if (bgColor == null)
 		bgColor = Color.white;
 
+	    int thisIndex = sim.elmList.indexOf(this);
 	    for (int i = 0; i < routePoints.size() - 1; i++) {
 		Point a = routePoints.get(i);
 		Point b = routePoints.get(i + 1);
 		if (!isHorizontal(a, b))
 		    continue;
 		int y = a.y;
-		ArrayList<Integer> usedX = new ArrayList<Integer>();
-		for (CircuitElm ce : sim.elmList) {
+		HashSet<Integer> usedX = new HashSet<Integer>();
+		for (int ei = 0; ei < sim.elmList.size(); ei++) {
+		    CircuitElm ce = sim.elmList.get(ei);
 		    if (!(ce instanceof WireElm) || ce == this)
 			continue;
-		    if (ce instanceof RoutedWireElm &&
-			System.identityHashCode(this) > System.identityHashCode(ce))
+		    if (ce instanceof RoutedWireElm && ei <= thisIndex)
 			continue;
 
 		    if (ce instanceof RoutedWireElm) {

@@ -533,7 +533,7 @@ public class CommandManager {
     	s=copyOfSelectedElms();
 	if (s == null || s.length() == 0)
 	    return;
-	if (app.duplicateArrayRows <= 1 && app.duplicateArrayCols <= 2 &&
+	if (app.duplicateArrayRows == 1 && app.duplicateArrayCols == 2 &&
 	    app.duplicateArraySpacingX == 1 && app.duplicateArraySpacingY == 1) {
 	    doPaste(s);
 	    return;

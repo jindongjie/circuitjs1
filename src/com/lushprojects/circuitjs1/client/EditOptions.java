@@ -105,19 +105,23 @@ class EditOptions implements Editable {
 		    ei.choice.select(sim.solverType);
 		    return ei;
 		}
-		if (n == 17)
-		    return new EditInfo("Minimum time step size (s)", sim.minTimeStep, 0, 0).setPositive();
-		if (n == 18)
+		int base = 17;
+		if (sim.adjustTimeStep) {
+		    if (n == base)
+			return new EditInfo("Minimum time step size (s)", sim.minTimeStep, 0, 0).setPositive();
+		    base++;
+		}
+		if (n == base)
 		    return new EditInfo("Default Canvas Scale", app.defaultCanvasScale, .2, 2.5).setPositive();
-		if (n == 19)
+		if (n == base + 1)
 		    return new EditInfo("Duplicate Array Rows", app.duplicateArrayRows, 1, 50).setPositive();
-		if (n == 20)
+		if (n == base + 2)
 		    return new EditInfo("Duplicate Array Columns", app.duplicateArrayCols, 1, 50).setPositive();
-		if (n == 21)
+		if (n == base + 3)
 		    return new EditInfo("Duplicate Array X Spacing (grid)", app.duplicateArraySpacingX, 0, 50).setPositive();
-		if (n == 22)
+		if (n == base + 4)
 		    return new EditInfo("Duplicate Array Y Spacing (grid)", app.duplicateArraySpacingY, 0, 50).setPositive();
-		if (n == 23) {
+		if (n == base + 5) {
 		    EditInfo ei = new EditInfo("", 0, -1, -1);
 		    ei.checkbox = new Checkbox("Wire Anti-Overlap Bumps", app.wireBumpsEnabled);
 		    return ei;
@@ -232,29 +236,33 @@ class EditOptions implements Editable {
 			app.needAnalyze();
 		    }
 		}
-		if (n == 17 && ei.value > 0)
-		    sim.minTimeStep = ei.value;
-		if (n == 18 && ei.value > 0) {
+		int base = 17;
+		if (sim.adjustTimeStep) {
+		    if (n == base && ei.value > 0)
+			sim.minTimeStep = ei.value;
+		    base++;
+		}
+		if (n == base && ei.value > 0) {
 		    app.defaultCanvasScale = Math.max(.2, Math.min(2.5, ei.value));
 		    app.ui.setDoubleOptionInStorage("defaultScale", app.defaultCanvasScale);
 		}
-		if (n == 19) {
+		if (n == base + 1) {
 		    app.duplicateArrayRows = Math.max(1, (int) ei.value);
 		    app.ui.setIntOptionInStorage("arrayRows", app.duplicateArrayRows);
 		}
-		if (n == 20) {
+		if (n == base + 2) {
 		    app.duplicateArrayCols = Math.max(1, (int) ei.value);
 		    app.ui.setIntOptionInStorage("arrayCols", app.duplicateArrayCols);
 		}
-		if (n == 21) {
+		if (n == base + 3) {
 		    app.duplicateArraySpacingX = Math.max(0, (int) ei.value);
 		    app.ui.setIntOptionInStorage("arraySpacingX", app.duplicateArraySpacingX);
 		}
-		if (n == 22) {
+		if (n == base + 4) {
 		    app.duplicateArraySpacingY = Math.max(0, (int) ei.value);
 		    app.ui.setIntOptionInStorage("arraySpacingY", app.duplicateArraySpacingY);
 		}
-		if (n == 23) {
+		if (n == base + 5) {
 		    app.wireBumpsEnabled = ei.checkbox.getState();
 		    app.setOptionInStorage("wireBumps", app.wireBumpsEnabled);
 		}
