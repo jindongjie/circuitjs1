@@ -214,6 +214,8 @@ import com.google.gwt.xml.client.Element;
 	    setVoltageColor(g, volts[0]);
 	    for (int i = 0; i < routePoints.size() - 1; i++)
 		drawThickLine(g, routePoints.get(i), routePoints.get(i + 1), busWidth > 1 ? 5 : 3);
+	    if (busWidth == 1 && app.wireBumpsEnabled)
+		drawAntiOverlapBumps(g);
 	    if (currents != null) {
 		current = 0;
 		for (int i = 0; i < currents.length; i++)
@@ -247,6 +249,109 @@ import com.google.gwt.xml.client.Element;
 	    if (s.length() > 0)
 		drawValuesOnLongestSegment(g, s);
 	    drawPosts(g);
+	}
+
+	boolean isHorizontal(Point a, Point b) {
+	    return a.y == b.y;
+	}
+
+	boolean isVertical(Point a, Point b) {
+	    return a.x == b.x;
+	}
+
+	boolean isSegmentEndpoint(Point p, Point a, Point b) {
+	    return (p.x == a.x && p.y == a.y) || (p.x == b.x && p.y == b.y);
+	}
+
+	boolean strictBetween(int v, int a, int b) {
+	    int lo = Math.min(a, b);
+	    int hi = Math.max(a, b);
+	    return v > lo && v < hi;
+	}
+
+	void drawAntiOverlapBumps(Graphics g) {
+	    double wireWidth = 3;
+	    double bumpRadius = Math.max(3, app.gridSize * .22);
+	    double gapHalf = bumpRadius + 2;
+	    Color wireColor = g.lastColor;
+	    Color bgColor = app.getBackgroundColor();
+	    if (bgColor == null)
+		bgColor = Color.white;
+
+	    for (int i = 0; i < routePoints.size() - 1; i++) {
+		Point a = routePoints.get(i);
+		Point b = routePoints.get(i + 1);
+		if (!isHorizontal(a, b))
+		    continue;
+		int y = a.y;
+		ArrayList<Integer> usedX = new ArrayList<Integer>();
+		for (CircuitElm ce : sim.elmList) {
+		    if (!(ce instanceof WireElm) || ce == this)
+			continue;
+		    if (ce instanceof RoutedWireElm &&
+			System.identityHashCode(this) > System.identityHashCode(ce))
+			continue;
+
+		    if (ce instanceof RoutedWireElm) {
+			RoutedWireElm rw = (RoutedWireElm) ce;
+			if (rw.routePoints == null)
+			    continue;
+			for (int j = 0; j < rw.routePoints.size() - 1; j++) {
+			    Point c = rw.routePoints.get(j);
+			    Point d = rw.routePoints.get(j + 1);
+			    if (!isVertical(c, d))
+				continue;
+			    int x = c.x;
+			    if (!strictBetween(x, a.x, b.x) || !strictBetween(y, c.y, d.y))
+				continue;
+			    Point cp = new Point(x, y);
+			    if (isSegmentEndpoint(cp, a, b) || isSegmentEndpoint(cp, c, d))
+				continue;
+			    if (usedX.contains(x))
+				continue;
+			    usedX.add(x);
+			    g.setColor(bgColor);
+			    g.setLineWidth(wireWidth + 2);
+			    g.drawLine((int) (x - gapHalf), y, (int) (x + gapHalf), y);
+			    if (wireColor != null)
+				g.setColor(wireColor);
+			    g.context.setLineWidth(wireWidth);
+			    g.context.beginPath();
+			    g.context.arc(x, y, bumpRadius, Math.PI, 0);
+			    g.context.stroke();
+			    g.context.setLineWidth(1.0);
+			}
+			continue;
+		    }
+
+		    WireElm w = (WireElm) ce;
+		    Point c = w.point1;
+		    Point d = w.point2;
+		    if (!isVertical(c, d))
+			continue;
+		    int x = c.x;
+		    if (!strictBetween(x, a.x, b.x) || !strictBetween(y, c.y, d.y))
+			continue;
+		    Point cp = new Point(x, y);
+		    if (isSegmentEndpoint(cp, a, b) || isSegmentEndpoint(cp, c, d))
+			continue;
+		    if (usedX.contains(x))
+			continue;
+		    usedX.add(x);
+		    g.setColor(bgColor);
+		    g.setLineWidth(wireWidth + 2);
+		    g.drawLine((int) (x - gapHalf), y, (int) (x + gapHalf), y);
+		    if (wireColor != null)
+			g.setColor(wireColor);
+		    g.context.setLineWidth(wireWidth);
+		    g.context.beginPath();
+		    g.context.arc(x, y, bumpRadius, Math.PI, 0);
+		    g.context.stroke();
+		    g.context.setLineWidth(1.0);
+		}
+	    }
+	    if (wireColor != null)
+		g.setColor(wireColor);
 	}
 
 	void drawValuesOnLongestSegment(Graphics g, String s) {
