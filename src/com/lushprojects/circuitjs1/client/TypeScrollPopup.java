@@ -60,6 +60,8 @@ public class TypeScrollPopup extends PopupPanel implements MouseOutHandler, Mous
 		currentPnp = originalPnp;
 
 		vp = new VerticalPanel();
+		addStyleName("scroll-value-popup");
+		vp.setStyleName("scroll-value-popup-body");
 		setWidget(vp);
 		Label header = new Label(getHeaderText());
 		header.addStyleDependentName("2off");

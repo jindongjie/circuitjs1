@@ -788,6 +788,7 @@ public class MouseManager implements MouseDownHandler, MouseMoveHandler, MouseUp
     	    	    sim.scopeManager.scopePopupMenu.doScopePopupChecks(false, sim.scopeManager.canStackScope(sim.scopeManager.scopeSelected), sim.scopeManager.canCombineScope(sim.scopeManager.scopeSelected),
     	    		    sim.scopeManager.canUnstackScope(sim.scopeManager.scopeSelected), sim.scopeManager.scopes[sim.scopeManager.scopeSelected]);
     	    	    ui.contextPanel=new PopupPanel(true);
+		    ui.contextPanel.addStyleName("context-menu-popup");
     	    	    ui.contextPanel.add(sim.scopeManager.scopePopupMenu.getMenuBar());
     	    	    showContextPanel(menuClientX, menuClientY);
     		}
@@ -827,6 +828,7 @@ public class MouseManager implements MouseDownHandler, MouseMoveHandler, MouseUp
     	    	    sim.menus.elmFlipYMenuItem.setEnabled(canFlipY);
     	    	    sim.menus.elmFlipXYMenuItem.setEnabled(canFlipXY);
     	    	    ui.contextPanel=new PopupPanel(true);
+		    ui.contextPanel.addStyleName("context-menu-popup");
     	    	    ui.contextPanel.add(sim.menus.elmMenuBar);
     	    	    showContextPanel(menuClientX, menuClientY);
     	    	} else {
@@ -835,6 +837,7 @@ public class MouseManager implements MouseDownHandler, MouseMoveHandler, MouseUp
     	    		sim.scopeManager.menuPlot = s.elmScope.selectedPlot;
     	    		sim.scopeManager.scopePopupMenu.doScopePopupChecks(true, false, false, false, s.elmScope);
     			ui.contextPanel=new PopupPanel(true);
+			ui.contextPanel.addStyleName("context-menu-popup");
     			ui.contextPanel.add(sim.scopeManager.scopePopupMenu.getMenuBar());
     			showContextPanel(menuClientX, menuClientY);
     	    	    }
@@ -842,7 +845,8 @@ public class MouseManager implements MouseDownHandler, MouseMoveHandler, MouseUp
     	} else {
     		doMainMenuChecks();
     		ui.contextPanel=new PopupPanel(true);
-    		ui.contextPanel.add(sim.menus.mainMenuBar);
+		ui.contextPanel.addStyleName("context-menu-popup");
+    		ui.contextPanel.add(ui.createContextMenuContents(sim.menus.mainMenuBar, true));
     		showContextPanel(menuClientX, menuClientY);
     	}
     }
