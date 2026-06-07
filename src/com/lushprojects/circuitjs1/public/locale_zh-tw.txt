@@ -1596,3 +1596,8 @@
 "Negative Edge Triggered"="負邊緣觸發"
 "Play Once"="播放一次"
 "Selection Color"="選擇顏色"
+
+"Day"="白天"
+"Night"="夜間"
+"Switch to Day Mode"="切換到日間模式"
+"Switch to Night Mode"="切換到夜間模式"

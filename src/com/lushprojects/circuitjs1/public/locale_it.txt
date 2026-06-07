@@ -1487,3 +1487,8 @@
 "unexpected end of input"="fine input inaspettata"
 "unijunction transistor"="transistor unigiunzione"
 "wattmeter"="wattmetro"
+
+"Day"="Giorno"
+"Night"="Notte"
+"Switch to Day Mode"="Passa alla modalità giorno"
+"Switch to Night Mode"="Passa alla modalità notte"

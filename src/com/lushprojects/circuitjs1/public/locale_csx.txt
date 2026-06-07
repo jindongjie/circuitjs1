@@ -1502,3 +1502,8 @@
 "triode"="trioda"
 "unijunction transistor"="jednopřechodový tranzistor"
 "varactor"="varaktor"
+
+"Day"="Den"
+"Night"="Noc"
+"Switch to Day Mode"="Přepnout na denní režim"
+"Switch to Night Mode"="Přepnout na noční režim"

@@ -1488,3 +1488,8 @@
 "time"="czas"
 "varactor"="waraktor"
 "Ćuk Converter"="Konwerter Ćuk"
+
+"Day"="Dzień"
+"Night"="Noc"
+"Switch to Day Mode"="Przełącz na tryb dzienny"
+"Switch to Night Mode"="Przełącz na tryb nocny"

@@ -846,7 +846,7 @@ public class MouseManager implements MouseDownHandler, MouseMoveHandler, MouseUp
     		doMainMenuChecks();
     		ui.contextPanel=new PopupPanel(true);
 		ui.contextPanel.addStyleName("context-menu-popup");
-    		ui.contextPanel.add(ui.createContextMenuContents(sim.menus.mainMenuBar, true));
+    		ui.contextPanel.add(ui.createContextMenuContents(sim.menus.mainMenuBar));
     		showContextPanel(menuClientX, menuClientY);
     	}
     }

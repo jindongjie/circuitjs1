@@ -897,11 +897,13 @@ public class UIManager {
 
     private String getThemeToggleHtml(boolean dayMode) {
 	String trackClass = dayMode ? "day" : "night";
-	return "<span class=\"theme-toggle-icon\">☀</span>" +
+	String dayLabelClass = dayMode ? "theme-toggle-label active" : "theme-toggle-label";
+	String nightLabelClass = dayMode ? "theme-toggle-label" : "theme-toggle-label active";
+	return "<span class=\"" + dayLabelClass + "\">" + Locale.LS("Day") + "</span>" +
 	    "<span class=\"theme-toggle-track " + trackClass + "\">" +
 		"<span class=\"theme-toggle-thumb\"></span>" +
 	    "</span>" +
-	    "<span class=\"theme-toggle-icon\">🌙</span>";
+	    "<span class=\"" + nightLabelClass + "\">" + Locale.LS("Night") + "</span>";
     }
 
     void updateThemeToggleButton(Button button) {
@@ -911,27 +913,8 @@ public class UIManager {
 	button.setTitle(title);
     }
 
-    Widget createContextMenuContents(MenuBar menuBar, boolean includeThemeToggle) {
-	if (!includeThemeToggle)
-	    return menuBar;
-	VerticalPanel panel = new VerticalPanel();
-	panel.setStyleName("context-menu-panel");
-	final Button popupThemeToggleButton = new Button();
-	popupThemeToggleButton.setStylePrimaryName("theme-toggle-btn");
-	popupThemeToggleButton.addStyleName("context-menu-theme-toggle");
-	updateThemeToggleButton(popupThemeToggleButton);
-	popupThemeToggleButton.addClickHandler(new ClickHandler() {
-	    public void onClick(ClickEvent event) {
-		setDayMode(!menus.printableCheckItem.getState());
-		updateThemeToggleButton(popupThemeToggleButton);
-	    }
-	});
-	panel.add(popupThemeToggleButton);
-	Label divider = new Label();
-	divider.setStyleName("context-menu-toggle-divider");
-	panel.add(divider);
-	panel.add(menuBar);
-	return panel;
+    Widget createContextMenuContents(MenuBar menuBar) {
+	return menuBar;
     }
 
     void applyThemeClass() {
