@@ -1384,3 +1384,8 @@
 "text"="텍스트"
 "transformer (sat)"="변압기 (포화)"
 "viewport"="뷰포트"
+
+"Day"="Day"
+"Night"="Night"
+"Switch to Day Mode"="Switch to Day Mode"
+"Switch to Night Mode"="Switch to Night Mode"

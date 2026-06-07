@@ -1387,3 +1387,8 @@
 "wattmeter"="Wattmeter"
 "write"="Schreiben"
 "Ćuk Converter"="Ćuk-Wandler"
+
+"Day"="Day"
+"Night"="Night"
+"Switch to Day Mode"="Switch to Day Mode"
+"Switch to Night Mode"="Switch to Night Mode"

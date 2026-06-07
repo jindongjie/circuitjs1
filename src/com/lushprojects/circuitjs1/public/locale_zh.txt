@@ -1502,3 +1502,8 @@
 "transformer (sat)"="变压器 (饱和)"
 "viewport"="视口"
 "Ćuk Converter"="Ćuk转换器"
+
+"Day"="Day"
+"Night"="Night"
+"Switch to Day Mode"="Switch to Day Mode"
+"Switch to Night Mode"="Switch to Night Mode"

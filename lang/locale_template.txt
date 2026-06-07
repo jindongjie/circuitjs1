@@ -1122,3 +1122,8 @@
 "wire loop detected"="wire loop detected"
 "write"="write"
 "Ćuk Converter"="Ćuk Converter"
+
+"Day"="Day"
+"Night"="Night"
+"Switch to Day Mode"="Switch to Day Mode"
+"Switch to Night Mode"="Switch to Night Mode"

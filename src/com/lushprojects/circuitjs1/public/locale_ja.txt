@@ -1526,3 +1526,8 @@
 "text"="テキスト"
 "transformer (sat)"="変圧器 (飽和)"
 "viewport"="ビューポート"
+
+"Day"="Day"
+"Night"="Night"
+"Switch to Day Mode"="Switch to Day Mode"
+"Switch to Night Mode"="Switch to Night Mode"
