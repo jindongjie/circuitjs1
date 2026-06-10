@@ -6,9 +6,11 @@ import com.google.gwt.core.client.JsArray;
 public class JSInterface {
 
     CirSim app;
+    AICircuitService aiService;
 
     JSInterface(CirSim app) {
 	this.app = app;
+	this.aiService = new AICircuitService(app);
     }
 
     void setExtVoltage(String name, double v) {
@@ -49,6 +51,24 @@ public class JSInterface {
     void setTimeStep(double ts) { app.sim.timeStep = ts; }
     double getMaxTimeStep() { return app.sim.maxTimeStep; }
     void setMaxTimeStep(double ts) { app.sim.maxTimeStep = app.sim.timeStep = ts; }
+    JavaScriptObject aiBeginTransaction() { return aiService.beginTransaction(); }
+    JavaScriptObject aiCommitTransaction() { return aiService.commitTransaction(); }
+    JavaScriptObject aiRollbackTransaction() { return aiService.rollbackTransaction(); }
+    JavaScriptObject aiListComponents() { return aiService.listComponents(); }
+    JavaScriptObject aiListNets() { return aiService.listNets(); }
+    JavaScriptObject aiGetComponent(String id) { return aiService.getComponent(id); }
+    JavaScriptObject aiAddComponent(String type, int x, int y, int x2, int y2, JavaScriptObject props) { return aiService.addComponent(type, x, y, x2, y2, props); }
+    JavaScriptObject aiAddWire(int x1, int y1, int x2, int y2, JavaScriptObject opts) { return aiService.addWire(x1, y1, x2, y2, opts); }
+    JavaScriptObject aiSetPropertyNumber(String id, String key, double value) { return aiService.setPropertyNumber(id, key, value); }
+    JavaScriptObject aiSetPropertyString(String id, String key, String value) { return aiService.setPropertyString(id, key, value); }
+    JavaScriptObject aiSetPropertyBoolean(String id, String key, boolean value) { return aiService.setPropertyBoolean(id, key, value); }
+    JavaScriptObject aiUnsupportedPropertyType(String id, String key, String type) { return aiService.unsupportedPropertyType(id, key, type); }
+    JavaScriptObject aiDelete(String id) { return aiService.deleteComponent(id); }
+    JavaScriptObject aiConnect(String idA, int pinA, String idB, int pinB) { return aiService.connect(idA, pinA, idB, pinB); }
+    JavaScriptObject aiAnalyze() { return aiService.analyze(); }
+    JavaScriptObject aiRunSteps(int steps) { return aiService.runSteps(steps); }
+    JavaScriptObject aiRunDuration(double duration) { return aiService.runDuration(duration); }
+    JavaScriptObject aiMeasureAll() { return aiService.measureAll(); }
 
     native void setupJSInterface() /*-{
 	var that = this;
@@ -66,6 +86,38 @@ public class JSInterface {
 	    getCircuitAsSVG: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::doExportAsSVGFromAPI()(); } ),
 	    exportCircuit: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::dumpCircuit()(); } ),
 	    importCircuit: $entry(function(circuit, subcircuitsOnly) { return that.@com.lushprojects.circuitjs1.client.JSInterface::importCircuitFromText(Ljava/lang/String;Z)(circuit, subcircuitsOnly); })
+	};
+	$wnd.CircuitJS1.ai = {
+	    beginTransaction: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiBeginTransaction()(); }),
+	    commitTransaction: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiCommitTransaction()(); }),
+	    rollbackTransaction: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiRollbackTransaction()(); }),
+	    listComponents: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiListComponents()(); }),
+	    listNets: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiListNets()(); }),
+	    getComponent: $entry(function(id) { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiGetComponent(Ljava/lang/String;)(id); }),
+	    addComponent: $entry(function(type, x, y, x2, y2, props) {
+		return that.@com.lushprojects.circuitjs1.client.JSInterface::aiAddComponent(Ljava/lang/String;IIIILcom/google/gwt/core/client/JavaScriptObject;)(type, x|0, y|0, x2|0, y2|0, props || null);
+	    }),
+	    addWire: $entry(function(x1, y1, x2, y2, opts) {
+		return that.@com.lushprojects.circuitjs1.client.JSInterface::aiAddWire(IIIILcom/google/gwt/core/client/JavaScriptObject;)(x1|0, y1|0, x2|0, y2|0, opts || null);
+	    }),
+	    setProperty: $entry(function(id, key, value) {
+		var t = typeof value;
+		if (t === "number")
+		    return that.@com.lushprojects.circuitjs1.client.JSInterface::aiSetPropertyNumber(Ljava/lang/String;Ljava/lang/String;D)(id, key, value);
+		if (t === "boolean")
+		    return that.@com.lushprojects.circuitjs1.client.JSInterface::aiSetPropertyBoolean(Ljava/lang/String;Ljava/lang/String;Z)(id, key, value);
+		if (t === "string")
+		    return that.@com.lushprojects.circuitjs1.client.JSInterface::aiSetPropertyString(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(id, key, value);
+		return that.@com.lushprojects.circuitjs1.client.JSInterface::aiUnsupportedPropertyType(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(id, key, t);
+	    }),
+	    "delete": $entry(function(id) { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiDelete(Ljava/lang/String;)(id); }),
+	    connect: $entry(function(idA, pinA, idB, pinB) {
+		return that.@com.lushprojects.circuitjs1.client.JSInterface::aiConnect(Ljava/lang/String;ILjava/lang/String;I)(idA, pinA|0, idB, pinB|0);
+	    }),
+	    analyze: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiAnalyze()(); }),
+	    runSteps: $entry(function(steps) { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiRunSteps(I)(steps|0); }),
+	    runDuration: $entry(function(duration) { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiRunDuration(D)(duration); }),
+	    measureAll: $entry(function() { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiMeasureAll()(); })
 	};
 	var hook = $wnd.oncircuitjsloaded;
 	if (hook)

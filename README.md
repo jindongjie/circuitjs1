@@ -14,6 +14,7 @@ For implementation and simulation internals, see:
 
 * [HOW_CIRCUITJS1_WORKS.md](HOW_CIRCUITJS1_WORKS.md)
 * [INTERNALS.md](INTERNALS.md)
+* [AI_INTERFACE.md](AI_INTERFACE.md)
 
 For a hosted version of the application see:
 
