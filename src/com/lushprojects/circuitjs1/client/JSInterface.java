@@ -110,7 +110,7 @@ public class JSInterface {
 		    return that.@com.lushprojects.circuitjs1.client.JSInterface::aiSetPropertyString(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(id, key, value);
 		return that.@com.lushprojects.circuitjs1.client.JSInterface::aiUnsupportedPropertyType(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)(id, key, t);
 	    }),
-	    delete: $entry(function(id) { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiDelete(Ljava/lang/String;)(id); }),
+	    "delete": $entry(function(id) { return that.@com.lushprojects.circuitjs1.client.JSInterface::aiDelete(Ljava/lang/String;)(id); }),
 	    connect: $entry(function(idA, pinA, idB, pinB) {
 		return that.@com.lushprojects.circuitjs1.client.JSInterface::aiConnect(Ljava/lang/String;ILjava/lang/String;I)(idA, pinA|0, idB, pinB|0);
 	    }),

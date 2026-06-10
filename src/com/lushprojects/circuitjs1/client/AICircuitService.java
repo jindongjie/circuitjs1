@@ -282,7 +282,7 @@ class AICircuitService {
 	    setNumber(measurement, "voltageDiff", elm.getVoltageDiff());
 	    JsArrayNumber volts = createNumberArray();
 	    for (int pin = 0; pin < elm.getPostCount(); pin++)
-		volts.push(elm.getVoltage(pin));
+		volts.push(pin < elm.volts.length ? elm.volts[pin] : 0);
 	    setObject(measurement, "voltages", volts);
 	    arr.push(measurement);
 	}
