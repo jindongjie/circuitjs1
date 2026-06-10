@@ -24,6 +24,10 @@ class AICircuitService {
     private static final String ERR_SIMULATION = "SIMULATION_ERROR";
     private static final String ERR_INVALID_ARGUMENT = "INVALID_ARGUMENT";
     private static final String ERR_UNSUPPORTED = "UNSUPPORTED";
+    private static final int RUN_STEPS_GUARD_MULTIPLIER = 20;
+    private static final int RUN_STEPS_MIN_GUARD = 100;
+    private static final int RUN_DURATION_MAX_GUARD = 100000;
+    private static final int FORCED_ITERATION_DELTA_MS = 1000;
 
     private final CirSim app;
     private final Map<CircuitElm, String> elmToId = new IdentityHashMap<CircuitElm, String>();
@@ -228,12 +232,13 @@ class AICircuitService {
 	if (simError != null)
 	    return simError;
 	int target = app.sim.timeStepCount + steps;
-	int guard = Math.max(steps * 20, 100);
+	int guard = Math.max(steps * RUN_STEPS_GUARD_MULTIPLIER, RUN_STEPS_MIN_GUARD);
 	boolean oldRunning = app.simRunning;
 	app.simRunning = true;
 	try {
 	    while (app.sim.timeStepCount < target && guard-- > 0 && app.stopMessage == null) {
-		app.sim.lastIterTime = System.currentTimeMillis() - 1000;
+		// runCircuit() can skip work if called too soon, so backdate lastIterTime before each forced AI step
+		app.sim.lastIterTime = System.currentTimeMillis() - FORCED_ITERATION_DELTA_MS;
 		app.sim.runCircuit(true);
 	    }
 	} finally {
@@ -251,12 +256,13 @@ class AICircuitService {
 	if (simError != null)
 	    return simError;
 	double target = app.sim.t + duration;
-	int guard = 100000;
+	int guard = RUN_DURATION_MAX_GUARD;
 	boolean oldRunning = app.simRunning;
 	app.simRunning = true;
 	try {
 	    while (app.sim.t < target && guard-- > 0 && app.stopMessage == null) {
-		app.sim.lastIterTime = System.currentTimeMillis() - 1000;
+		// runCircuit() can skip work if called too soon, so backdate lastIterTime before each forced AI step
+		app.sim.lastIterTime = System.currentTimeMillis() - FORCED_ITERATION_DELTA_MS;
 		app.sim.runCircuit(true);
 	    }
 	} finally {
